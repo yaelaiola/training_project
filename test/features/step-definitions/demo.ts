@@ -1,8 +1,6 @@
 import { Given, When,  Then } from "@cucumber/cucumber"
-//import { assert } from "console"
 import assert from "assert"
 
-//Given("Google page is opened", async function(){
 Given(/^Google page is opened$/, async function(){
     console.log(`Going to open browser with google URL`)
     await browser.url("https://www.google.com")
@@ -27,4 +25,28 @@ Then(/^The URL should match (.*)$/, async function(ExpectedURL){
     console.log(`>> Verify expectedURL: ${ExpectedURL}`)
     let url = await browser.getUrl()
     assert.equal(url, ExpectedURL, `Expected result: ${ExpectedURL}, Actual result: ${url}`)
+})
+
+Given(/^A webpage is opened$/, async function(){
+    console.log(`Going to oepn a webpage`)
+    await browser.url("/inputs") // Will take it from baseUrl in wdio.conf.ts
+    await browser.setTimeout({implicit: 15000, pageLoad: 10000})
+    await browser.maximizeWindow()
+    console.log(`Webpage opened and maximized`)
+})
+
+When(/^Perform web interations$/, async function(){
+    /**
+     * 1. Input box
+     * Actions:
+     * 1. Type into input box
+     * 2. Clear the field and type or just add value
+     * 3. Click and type
+     * 4. Slow typing
+     */
+    console.log(`Going to perform some web interactions`)
+    let ele = await $(`[type=number]`)
+    await ele.setValue("12345")
+    // await browser.debug()
+    // await browser.closeWindow()
 })
