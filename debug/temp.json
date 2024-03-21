@@ -1,0 +1,10 @@
+[
+    {
+        "firstname": "John",
+        "lastname": "Smith",
+        "email": "jsmith@gmail.com",
+        "due": "$50.00",
+        "web": "http://www.jsmith.com",
+        "action": "delete action"
+    }
+]
